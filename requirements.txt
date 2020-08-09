@@ -1,0 +1,5 @@
+praw
+gtts
+moviepy
+scipy
+requests
