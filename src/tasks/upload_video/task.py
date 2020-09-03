@@ -8,7 +8,7 @@ def upload_video(context):
     title = post.title
     description = title + f" (/r/{subreddit})"
 
-    args = (r"C:\Users\Olsi\PycharmProjects\kot\binyoutubeuploader_linux_amd64", "-filename", video_path, "-title", title, "-description", description,
+    args = (r"C:\Users\Olsi\PycharmProjects\kot\youtubeuploader_windows_amd64.exe", "-filename", video_path, "-title", title, "-description", description,
             "-thumbnail", thumbnail_path, "-privacy", "public")
     popen = subprocess.Popen(args, stdout=subprocess.PIPE)
     popen.wait()

@@ -11,9 +11,9 @@ class Pipeline:
             get_hottest_post,
             tts,
             generate_video,
-            # generate_thumbnail,
-            # upload_video,
-            cleanup
+            generate_thumbnail,
+            upload_video,
+            # cleanup
         ]
         self.context = dict()
 
@@ -26,10 +26,20 @@ class Pipeline:
 if __name__ == "__main__":
     pipeline = Pipeline()
     # URL e postimit ne reddit
-    urls = [
-        'https://www.reddit.com/r/AskReddit/comments/grst2b/police_officers_of_reddit_what_are_you_thinking/'
-    ]
+    import praw
+    urls = []
+    client_id = "iosCZqE9n_yFQw"
+    client_secret = "Eu_vqISa7HWnPpWQmh6xcsDx36w"
+    reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agent='YOUTUBE')
+    for post in reddit.subreddit('AskReddit').top('day'):
+        if post.score > 10000 and post.title.__len__() < 100:
+            urls.append(post.url)
+            print(post.url)
+            break
     # Pak a shume sa minuta e do videon
-    video_minutes_limit = 13
+    video_minutes_limit = 1
     for url in urls:
-        pipeline.execute(url=url, video_minutes_limit=video_minutes_limit)
+        try:
+            pipeline.execute(url=url, video_minutes_limit=video_minutes_limit)
+        except:
+            print('\n\n\n\n**********    Error    **********\n\n\n\n')
