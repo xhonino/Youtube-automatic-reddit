@@ -1,17 +1,22 @@
 import textwrap
 import uuid
 from moviepy.editor import *
+import os
+
+os.chdir('../')
+cwd = os.getcwd()
+os.chdir('src')
 
 TITLE_FONT_SIZE = 45
 FONT_SIZE = 45
 TITLE_FONT_COLOR = 'white'
-BGM_PATH = r'C:\Users\Olsi\PycharmProjects\kot\assets\bgm.mp3'
-STATIC_PATH = r'C:\Users\Olsi\PycharmProjects\kot\assets\static2.mp4'
+BGM_PATH = rf'{cwd}\assets\bgm.mp3'
+STATIC_PATH = rf'{cwd}\assets\static2.mp4'
 SIZE = (1920, 1080)
 BG_COLOR = (16,16,16)
-VIDEO_PATH = r"C:\Users\Olsi\PycharmProjects\kot\data\video"
+VIDEO_PATH = rf'{cwd}\data\video'
 FONT = 'Amiri-regular'
-BACKGROUND_IMAGE = r"C:\Users\Olsi\PycharmProjects\kot\assets\background_image.jpg"
+BACKGROUND_IMAGE = rf'{cwd}\assets\background_image.jpg'
 
 def generate_title(text, audio_path):
     background_clip = ImageClip(BACKGROUND_IMAGE)

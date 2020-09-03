@@ -1,15 +1,19 @@
 from PIL import Image, ImageFont, ImageDraw
 from textwrap import wrap,fill
-
-font = ImageFont.truetype(r'C:\Users\Olsi\PycharmProjects\kot\assets\D-DIN-Bold.otf', size=90)
-WRAP_WIDTH = 18
-TEXT_OFFSET = (90, 90)
-BCKG_IMAGE = Image.open(r'C:\Users\Olsi\PycharmProjects\kot\assets\background1.png')
-SIMPSON_IMAGE = Image.open(r'C:\Users\Olsi\PycharmProjects\kot\assets\homer.png')
-THUMBNAIL_DIR = r"C:\Users\Olsi\PycharmProjects\kot\data\thumbnails"
-
+import os
 
 def generate_thumbnail(context):
+    os.chdir('../')
+    cwd = os.getcwd()
+    os.chdir('src')
+
+    font = ImageFont.truetype(rf'{cwd}\assets\D-DIN-Bold.otf', size=90)
+    WRAP_WIDTH = 18
+    TEXT_OFFSET = (90, 90)
+    BCKG_IMAGE = Image.open(rf'{cwd}\assets\background1.png')
+    SIMPSON_IMAGE = Image.open(rf'{cwd}\assets\homer.png')
+    THUMBNAIL_DIR = rf'{cwd}\data\thumbnails'
+
     post = context["post"]
     IMAGE_TEXT = post.title
 

@@ -4,6 +4,8 @@ from src.tasks.generate_video.task import generate_video
 from src.tasks.upload_video.task import upload_video
 from src.tasks.generate_thumbnail.task import generate_thumbnail
 from src.tasks.cleanup.task import cleanup
+import os
+
 
 class Pipeline:
     def __init__(self):
@@ -38,8 +40,9 @@ if __name__ == "__main__":
             break
     # Pak a shume sa minuta e do videon
     video_minutes_limit = 0.05
+    cwd = os.getcwd()
     for url in urls:
         try:
-            pipeline.execute(url=url, video_minutes_limit=video_minutes_limit)
+            pipeline.execute(url=url, video_minutes_limit=video_minutes_limit, cwd=cwd)
         except Exception as e:
             print(f'\n\n\n\n**********    {e}    **********\n\n\n\n')

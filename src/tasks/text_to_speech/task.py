@@ -6,8 +6,11 @@ from gtts import gTTS
 from google.cloud import texttospeech_v1
 import os
 
+os.chdir('../')
+cwd = os.getcwd()
+os.chdir('src')
 
-AUDIO_PATH = r"C:\Users\Olsi\PycharmProjects\kot\data\audio"
+AUDIO_PATH = rf'{cwd}\data\audio'
 
 
 def save_tts(text):
@@ -30,7 +33,7 @@ def tts(context):
 
 def save_wavenet(text, path):
    os.environ[
-      "GOOGLE_APPLICATION_CREDENTIALS"] = r"C:\Users\Olsi\PycharmProjects\kot\assets\Google Wavenet TTS-6c537e35e7ed.json"
+      "GOOGLE_APPLICATION_CREDENTIALS"] = rf"{cwd}\assets\Google Wavenet TTS-6c537e35e7ed.json"
    client = texttospeech_v1.TextToSpeechClient()
    synthesis_input = texttospeech_v1.types.SynthesisInput(text=text)
    voice = texttospeech_v1.types.VoiceSelectionParams(
