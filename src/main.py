@@ -37,9 +37,9 @@ if __name__ == "__main__":
             print(post.url)
             break
     # Pak a shume sa minuta e do videon
-    video_minutes_limit = 1
+    video_minutes_limit = 0.05
     for url in urls:
         try:
             pipeline.execute(url=url, video_minutes_limit=video_minutes_limit)
-        except:
-            print('\n\n\n\n**********    Error    **********\n\n\n\n')
+        except Exception as e:
+            print(f'\n\n\n\n**********    {e}    **********\n\n\n\n')

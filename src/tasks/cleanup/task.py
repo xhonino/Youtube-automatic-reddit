@@ -2,15 +2,15 @@ import os
 import glob
 
 def cleanup(context):
-    thumbnail_path = context["thumbnail_path"]
-    video_path = context["video_path"]
+    thumbnail_path = fr'C:\Users\Olsi\PycharmProjects\kot\data\thumbnails\{context["video_id"]}.png'
+    video_path = fr'C:\Users\Olsi\PycharmProjects\kot\data\thumbnails\{context["video_id"]}.mp4'
     post = context["post"]
-    subreddit = context["subreddit"]
+    subreddit = 'AskReddit'
     description = post.title + f" (/r/{subreddit})"
 
     os.mkdir(rf'C:\Users\Olsi\PycharmProjects\kot\VIDEOS\{context["video_id"]}')
-    os.rename(thumbnail_path, r"C:\Users\Olsi\PycharmProjects\kot\00 VIDEOS\thumbnail.png")
-    os.rename(video_path, r"C:\Users\Olsi\PycharmProjects\kot\00 VIDEOS\video.mp4")
+    os.rename(thumbnail_path, r"C:\Users\Olsi\PycharmProjects\kot\VIDEOS\thumbnail.png")
+    os.rename(video_path, r"C:\Users\Olsi\PycharmProjects\kot\VIDEOS\video.mp4")
     with open(rf'C:\Users\Olsi\PycharmProjects\kot\VIDEOS\{context["video_id"]}\Video Info.txt','a') as file:
         file.writelines(f'TITLE: {post.title}\n')
         file.writelines(f'DESC: {description}\n')

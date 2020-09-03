@@ -63,15 +63,15 @@ def generate_thumbnail(context):
     highlighted_text = find_highlight_text(IMAGE_TEXT)
     highlighted_text_position1 = find_text_location(text=IMAGE_TEXT,width=WRAP_WIDTH,highlight_text=highlighted_text, font=font)
 
-    print(highlighted_text_position1)
-    print(IMAGE_TEXT)
+    # print(highlighted_text_position1)
+    # print(IMAGE_TEXT)
 
     draw = ImageDraw.Draw(thumbnail)
     highlighted_text_position = (highlighted_text_position1[0]+TEXT_OFFSET[0],highlighted_text_position1[1]+TEXT_OFFSET[1])
     rectangle_below_text(highlighted_text_position, font, highlighted_text)
     draw.text(TEXT_OFFSET,fill(IMAGE_TEXT, width=WRAP_WIDTH), font=font, fill='black')
 
-    thumbnail.show()
+    # thumbnail.show()
     video_id = context["video_id"]
     thumbnail_path = fr"{THUMBNAIL_DIR}\{video_id}.png"
     thumbnail.save(thumbnail_path)
