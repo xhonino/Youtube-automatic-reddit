@@ -1,6 +1,7 @@
 from PIL import Image, ImageFont, ImageDraw
 from textwrap import wrap,fill
 import os
+from random import choice
 
 def generate_thumbnail(context):
     os.chdir('../')
@@ -10,7 +11,7 @@ def generate_thumbnail(context):
     font = ImageFont.truetype(rf'{cwd}\assets\D-DIN-Bold.otf', size=90)
     WRAP_WIDTH = 18
     TEXT_OFFSET = (90, 90)
-    BCKG_IMAGE = Image.open(rf'{cwd}\assets\background1.png')
+    BCKG_IMAGE = Image.open(rf'{cwd}\assets\characters\background ({choice(range(20))}).png')
     SIMPSON_IMAGE = Image.open(rf'{cwd}\assets\homer.png')
     THUMBNAIL_DIR = rf'{cwd}\data\thumbnails'
 
