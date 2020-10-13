@@ -24,22 +24,20 @@ class Pipeline:
         for task in self.tasks:
             print(f"Current Task: {task.__name__}")
             task(self.context)
-
 if __name__ == "__main__":
     pipeline = Pipeline()
     # URL e postimit ne reddit
     import praw
-    urls = []
+    urls = ["https://www.reddit.com/r/AskReddit/comments/j9pard/what_future_technology_do_you_want_to_see_during/"]
     client_id = "iosCZqE9n_yFQw"
     client_secret = "Eu_vqISa7HWnPpWQmh6xcsDx36w"
     reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agent='YOUTUBE')
-    for post in reddit.subreddit('AskReddit').top('day'):
-        if post.score > 10000 and post.title.__len__() < 100:
-            urls.append(post.url)
-            print(post.url)
-            break
+    # for post in reddit.subreddit('AskReddit').top('day'):
+    #     if post.score > 10000 and post.title.__len__() < 100:
+    #         urls.append(post.url)
+    #         print(post.url)
     # Pak a shume sa minuta e do videon
-    video_minutes_limit = 0.05
+    video_minutes_limit = 11
     cwd = os.getcwd()
     for url in urls:
         try:

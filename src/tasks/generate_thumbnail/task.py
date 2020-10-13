@@ -12,7 +12,7 @@ def generate_thumbnail(context):
     WRAP_WIDTH = 18
     TEXT_OFFSET = (90, 90)
     BCKG_IMAGE = Image.open(rf'{cwd}\assets\background1.png')
-    SIMPSON_IMAGE = Image.open(rf'{cwd}\assets\characters\background ({choice(range(20))}).png')
+    SIMPSON_IMAGE = Image.open(rf'{cwd}\assets\characters\background ({choice(range(25))}).png')
     THUMBNAIL_DIR = rf'{cwd}\data\thumbnails'
 
     post = context["post"]
@@ -28,6 +28,13 @@ def generate_thumbnail(context):
         for text in wrap(IMAGE_TEXT,width=1, break_long_words=False):
             if len(text) > 6:
                 return text
+        for text in wrap(IMAGE_TEXT,width=1, break_long_words=False):
+            if len(text) > 5:
+                return text
+        for text in wrap(IMAGE_TEXT,width=1, break_long_words=False):
+            if len(text) > 4:
+                return text
+
     def find_text_location(text, width, highlight_text, font):
         """ Returns a tuple of (height,width) of where the text should be in pixels on the image in relation to the text itself,
             text=whole text,
@@ -64,7 +71,7 @@ def generate_thumbnail(context):
 
     thumbnail = Image.new("RGB", (1280, 720), (255, 255, 255))
     thumbnail.paste(BCKG_IMAGE)
-    thumbnail.paste(SIMPSON_IMAGE,(777,21),SIMPSON_IMAGE)
+    thumbnail.paste(SIMPSON_IMAGE,(757,21),SIMPSON_IMAGE)
     highlighted_text = find_highlight_text(IMAGE_TEXT)
     highlighted_text_position1 = find_text_location(text=IMAGE_TEXT,width=WRAP_WIDTH,highlight_text=highlighted_text, font=font)
 

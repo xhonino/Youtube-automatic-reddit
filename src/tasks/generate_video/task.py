@@ -82,5 +82,5 @@ def generate_video(context):
     path = fr"{VIDEO_PATH}\{video_id}.mp4"
     context["video_path"] = path
     context["video_id"] = video_id
-    video.write_videofile(path, fps=24, codec='libx264', threads=4)
+    video.write_videofile(path, fps=24, codec='h264_nvenc', threads=4)
 

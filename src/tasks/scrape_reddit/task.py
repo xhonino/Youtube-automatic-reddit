@@ -22,6 +22,8 @@ def get_hottest_post(context):
          continue
       if comment.stickied:
          continue
+      if comment.body.find("https:") != -1 or comment.body.find("http:") != -1 or comment.body.find("www.") != -1:
+         continue
       comment_body = comment.body
       if comment_body == "[removed]":
          continue
