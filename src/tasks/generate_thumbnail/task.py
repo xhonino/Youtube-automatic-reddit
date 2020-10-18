@@ -34,6 +34,9 @@ def generate_thumbnail(context):
         for text in wrap(IMAGE_TEXT,width=1, break_long_words=False):
             if len(text) > 4:
                 return text
+        for text in wrap(IMAGE_TEXT,width=1, break_long_words=False):
+            if len(text) > 3:
+                return text
 
     def find_text_location(text, width, highlight_text, font):
         """ Returns a tuple of (height,width) of where the text should be in pixels on the image in relation to the text itself,
