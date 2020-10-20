@@ -1,3 +1,4 @@
+import re
 words = {
 'anal': 'sex',
 'ass hole': 'ask hole',
@@ -30,8 +31,7 @@ words = {
 }
 
 def filter(text):
-    text = text.lower()
     for k,v in words.items():
-        if k in text:
-            text = text.replace(k,v)
+        a = re.compile(re.escape(k), re.IGNORECASE)
+        text = a.sub(v,text)
     return text

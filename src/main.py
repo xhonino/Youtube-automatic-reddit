@@ -41,16 +41,16 @@ if __name__ == "__main__":
     for post in reddit.subreddit('AskReddit').top('day'):
         if post.num_comments > 1000:
             if post.url not in past_urls['urls']:
-                urls.append(post.url)
                 if len(urls) >= 0:
                     break
+                urls.append(post.url)
 
             else:
                 print("Duplicate URL found. Skipping this one\n")
     print(f"Found {len(urls)} posts\n")
 
     # Pak a shume sa minuta e do videon
-    video_minutes_limit = 0.1
+    video_minutes_limit = 11
     cwd = os.getcwd()
 
     for x,url in enumerate(urls):
