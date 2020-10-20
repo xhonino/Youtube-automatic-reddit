@@ -3,6 +3,7 @@ import os
 from time import sleep
 from praw.models import MoreComments
 from src.tasks.scrape_reddit.post import Post, Comment
+from src.tasks.scrape_reddit.profanity_filter import filter
 
 client_id = "iosCZqE9n_yFQw"
 client_secret = "Eu_vqISa7HWnPpWQmh6xcsDx36w"
@@ -24,7 +25,7 @@ def get_hottest_post(context):
          continue
       if comment.body.find("https:") != -1 or comment.body.find("http:") != -1 or comment.body.find("www.") != -1:
          continue
-      comment_body = comment.body
+      comment_body = filter(comment.body)
       if comment_body == "[removed]":
          continue
       comment_reply = ""
@@ -33,7 +34,7 @@ def get_hottest_post(context):
          reply = comment.replies[0]
          if isinstance(reply, MoreComments):
             continue
-         comment_reply = reply.body
+         comment_reply = filter(reply.body)
       comment_output = Comment(comment_body, comment_reply)
       if comment.author is not None:
          comment_output.author = comment.author.name
@@ -48,6 +49,8 @@ def get_hottest_post(context):
       # sleep(5)
       if video_minutes >= video_minutes_limit:
          break
+
+   post.title = filter(post.title)
 
    post_data = Post(post.title, comments)
    post_data.score = post.score

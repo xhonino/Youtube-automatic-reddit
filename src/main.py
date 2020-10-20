@@ -33,7 +33,7 @@ if __name__ == "__main__":
     # URL e postimit ne reddit
     import praw
 
-    urls = []
+    urls = ['https://www.reddit.com/r/AskReddit/comments/jcxgtz/at_what_moment_did_you_realize_fuck_im_old/']
     client_id = "iosCZqE9n_yFQw"
     client_secret = "Eu_vqISa7HWnPpWQmh6xcsDx36w"
     reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agent='YOUTUBE')
@@ -42,12 +42,15 @@ if __name__ == "__main__":
         if post.num_comments > 1000:
             if post.url not in past_urls['urls']:
                 urls.append(post.url)
+                if len(urls) >= 0:
+                    break
+
             else:
                 print("Duplicate URL found. Skipping this one\n")
     print(f"Found {len(urls)} posts\n")
 
     # Pak a shume sa minuta e do videon
-    video_minutes_limit = 11
+    video_minutes_limit = 0.1
     cwd = os.getcwd()
 
     for x,url in enumerate(urls):
