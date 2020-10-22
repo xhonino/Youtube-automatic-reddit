@@ -33,7 +33,7 @@ if __name__ == "__main__":
     # URL e postimit ne reddit
     import praw
 
-    urls = ['https://www.reddit.com/r/AskReddit/comments/jcxgtz/at_what_moment_did_you_realize_fuck_im_old/']
+    urls = []
     client_id = "iosCZqE9n_yFQw"
     client_secret = "Eu_vqISa7HWnPpWQmh6xcsDx36w"
     reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agent='YOUTUBE')
@@ -41,7 +41,7 @@ if __name__ == "__main__":
     for post in reddit.subreddit('AskReddit').top('day'):
         if post.num_comments > 1000:
             if post.url not in past_urls['urls']:
-                if len(urls) >= 0:
+                if len(urls) >= 555:
                     break
                 urls.append(post.url)
 
