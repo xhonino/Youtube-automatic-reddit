@@ -25,6 +25,22 @@ class Pipeline:
             task(self.context)
 if __name__ == "__main__":
 
+
+
+
+    ##############################
+
+    # sa video do te renderizohen (nga videot me te mira te dites, mos u be merak se nuk perseriten)
+    number_of_videos = 5
+    # sa minuta e do videon
+    video_minutes_limit = 3
+
+    ##############################
+
+
+
+
+
     import json
     with open('past urls.json') as json_file:
         past_urls = json.load(json_file)
