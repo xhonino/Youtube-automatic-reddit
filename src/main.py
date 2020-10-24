@@ -50,7 +50,7 @@ if __name__ == "__main__":
     print(f"Found {len(urls)} posts\n")
 
     # Pak a shume sa minuta e do videon
-    video_minutes_limit = 11
+    video_minutes_limit = 1
     cwd = os.getcwd()
 
     for x,url in enumerate(urls):

@@ -38,10 +38,10 @@ def save_wavenet(text, path):
    synthesis_input = texttospeech_v1.types.SynthesisInput(text=text)
    voice = texttospeech_v1.types.VoiceSelectionParams(
       language_code='en-US',
-      name='en-US-Wavenet-F',
+      name='en-US-Wavenet-D',
       ssml_gender=texttospeech_v1.SsmlVoiceGender.FEMALE)
    audio_config = texttospeech_v1.types.AudioConfig(
-      audio_encoding=texttospeech_v1.AudioEncoding.MP3)
+      audio_encoding=texttospeech_v1.AudioEncoding.MP3, speaking_rate=1.2, pitch=3.5)
    response = client.synthesize_speech(input=synthesis_input, voice=voice, audio_config=audio_config)
    with open(path, 'wb') as out:
       # Write the response to the output file.
@@ -49,4 +49,4 @@ def save_wavenet(text, path):
    return
 
 if __name__ == "__main__":
-   save_tts("i am a potato, what are you?")
+   save_tts(r"The internet is scheduled to go down forever. You have a week to prepare and download anything from the web you think is necessary to have for the rest of your life. What do you download and why?")
