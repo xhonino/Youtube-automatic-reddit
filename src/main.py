@@ -28,12 +28,12 @@ if __name__ == "__main__":
 
 
 
-    ##############################
+    ############################## YOUTUBE
 
     # sa video do te renderizohen (nga videot me te mira te dites, mos u be merak se nuk perseriten)
-    number_of_videos = 5
+    number_of_videos = 99
     # sa minuta e do videon
-    video_minutes_limit = 3
+    video_minutes_limit = 11
 
     ##############################
 
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     for post in reddit.subreddit('AskReddit').top('day'):
         if post.num_comments > 1000:
             if post.url not in past_urls['urls']:
-                if len(urls) >= 555:
+                if len(urls) >= number_of_videos:
                     break
                 urls.append(post.url)
 
@@ -66,7 +66,6 @@ if __name__ == "__main__":
     print(f"Found {len(urls)} posts\n")
 
     # Pak a shume sa minuta e do videon
-    video_minutes_limit = 1
     cwd = os.getcwd()
 
     for x,url in enumerate(urls):
