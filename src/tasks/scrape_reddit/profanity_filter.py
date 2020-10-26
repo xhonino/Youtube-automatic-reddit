@@ -27,7 +27,8 @@ words = {
 'son of a bitch': 'son of a mother',
 'viagra': 'v pill',
 'whore': 'not a good girl',
-'hore': 'not a good girl'
+'hore': 'not a good girl',
+'porn' : 'por*'
 }
 
 def filter(text):
