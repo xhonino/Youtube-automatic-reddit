@@ -45,7 +45,7 @@ def get_hottest_post(context):
 
       ############### Kontroll per gjatesine e videos ##################
       total_characters += len(comment_body)
-      video_minutes = total_characters/850
+      video_minutes = total_characters/1000
       # sleep(5)
       if video_minutes >= video_minutes_limit:
          break
