@@ -24,7 +24,8 @@ class Pipeline:
             print(f"Current Task: {task.__name__}")
             task(self.context)
 if __name__ == "__main__":
-
+    from time import sleep
+    # sleep(16000)
 
 
 
@@ -35,6 +36,10 @@ if __name__ == "__main__":
     # sa minuta e do videon
     video_minutes_limit = 11
 
+    # sa komente do para se ti kujtosh te bejne like dhe subscribe
+    comm_bef_likesub = 3
+    # sa komente do para se ti kujtosh te bejne like dhe subscribe heren e dyte
+    comm_bef_likesub2 = 9
     ##############################
 
 
@@ -71,7 +76,7 @@ if __name__ == "__main__":
     for x,url in enumerate(urls):
         try:
             print(f"Trying URL nr {x+1}:\n{url}")
-            pipeline.execute(url=url, video_minutes_limit=video_minutes_limit, cwd=cwd)
+            pipeline.execute(url=url, video_minutes_limit=video_minutes_limit, cwd=cwd, comm_bef_likesub = comm_bef_likesub, comm_bef_likesub2=comm_bef_likesub2)
         except Exception as e:
             print(f'\n\n\n\n******************************\n{e}\n******************************\n\n\n\n')
         else:
