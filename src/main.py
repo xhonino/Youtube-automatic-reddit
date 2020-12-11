@@ -55,7 +55,6 @@ if __name__ == "__main__":
     import praw
 
     urls = [
-        "https://www.reddit.com/r/AskReddit/comments/ka5ncp/redditors_who_have_hired_a_private/",
     ]
 
     client_id = "iosCZqE9n_yFQw"
@@ -63,12 +62,14 @@ if __name__ == "__main__":
     reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agent='YOUTUBE')
 
     # for post in reddit.subreddit('AskReddit').top('day'):
-    #     if post.num_comments > 1000:
+    #     if post.num_comments > 600:
     #         if post.url not in past_urls['urls']:
+    #             if len(post.title) < 71:
+    #                 urls.append(post.url)
+    #             else:
+    #                 print('Skipping because of long title...')
     #             if len(urls) >= number_of_videos:
     #                 break
-    #             urls.append(post.url)
-    #
     #         else:
     #             print("Duplicate URL found. Skipping this one\n")
     # print(f"Found {len(urls)} posts\n")

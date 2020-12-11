@@ -17,7 +17,7 @@ def cleanup(context):
     os.rename(thumbnail_path, rf'{cwd}\VIDEOS\{context["video_id"]}\thumbnail.png')
     os.rename(video_path, rf'{cwd}\VIDEOS\{context["video_id"]}\video.mp4')
     with open(rf'{cwd}\VIDEOS\{context["video_id"]}\Video Info.txt','a') as file:
-        file.writelines(f"TITLE:\n{post.title} [r/AskReddit] Reddit Stories\n\n\n")
+        file.writelines(f"TITLE:\n{post.title} [r/AskReddit]\n\n\n")
         file.writelines(f"DESC:\n{description}\n\n\n")
         file.writelines(f'TAGS:\n{tags}\n\n\n')
         file.writelines(f'URL:\n{context["url"]}')
