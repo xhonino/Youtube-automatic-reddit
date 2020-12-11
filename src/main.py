@@ -24,8 +24,8 @@ class Pipeline:
             print(f"Current Task: {task.__name__}")
             task(self.context)
 if __name__ == "__main__":
-    from time import sleep
-    # sleep(16000)
+    # from time import sleep
+    # sleep(3600)
 
 
 
@@ -54,21 +54,24 @@ if __name__ == "__main__":
     # URL e postimit ne reddit
     import praw
 
-    urls = []
+    urls = [
+        "https://www.reddit.com/r/AskReddit/comments/ka5ncp/redditors_who_have_hired_a_private/",
+    ]
+
     client_id = "iosCZqE9n_yFQw"
     client_secret = "Eu_vqISa7HWnPpWQmh6xcsDx36w"
     reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agent='YOUTUBE')
 
-    for post in reddit.subreddit('AskReddit').top('day'):
-        if post.num_comments > 1000:
-            if post.url not in past_urls['urls']:
-                if len(urls) >= number_of_videos:
-                    break
-                urls.append(post.url)
-
-            else:
-                print("Duplicate URL found. Skipping this one\n")
-    print(f"Found {len(urls)} posts\n")
+    # for post in reddit.subreddit('AskReddit').top('day'):
+    #     if post.num_comments > 1000:
+    #         if post.url not in past_urls['urls']:
+    #             if len(urls) >= number_of_videos:
+    #                 break
+    #             urls.append(post.url)
+    #
+    #         else:
+    #             print("Duplicate URL found. Skipping this one\n")
+    # print(f"Found {len(urls)} posts\n")
 
     # Pak a shume sa minuta e do videon
     cwd = os.getcwd()

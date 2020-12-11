@@ -5,6 +5,8 @@ import random
 from gtts import gTTS
 from google.cloud import texttospeech_v1
 import os
+from src.tasks.generate_video.split_sentence import split_into_sentences
+
 
 os.chdir('../')
 cwd = os.getcwd()
@@ -25,9 +27,13 @@ def tts(context):
    post = context["post"]
    post.title_audio = save_tts(post.title)
    for comment in post.comments:
-      comment.body_audio = save_tts(comment.body)
-      if comment.reply:
-         comment.reply_audio = save_tts(comment.reply)
+      comment.body_audio = []
+      comment.text_list = split_into_sentences(comment.body)
+      for sentence in comment.text_list:
+         comment.body_audio.append(save_tts(sentence))
+      # comment.body_audio = save_tts(comment.body)
+      # if comment.reply:
+      #    comment.reply_audio = save_tts(comment.reply)
    return
 
 

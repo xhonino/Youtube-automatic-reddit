@@ -2,6 +2,7 @@ import textwrap
 import uuid
 from moviepy.editor import *
 import os
+from src.tasks.generate_video.split_sentence import split_into_sentences
 
 os.chdir('../')
 cwd = os.getcwd()
@@ -40,43 +41,49 @@ def generate_clip(post, comment):
     text = comment.body
     audio_path = comment.body_audio
 
+    text_list = split_into_sentences(text)
+    all_clips = []
+    for i in range(len(text_list)):
+        text = (' ').join(text_list[:i+1])
+        wrapped_text = textwrap.fill(text, width=80)
 
-    background_clip = ImageClip(BACKGROUND_IMAGE)
-    audio_clip = AudioFileClip(audio_path)
-    font_size = TITLE_FONT_SIZE
-    # author_font_size = 30
-    wrapped_text = textwrap.fill(text, width=80)
-    wrapped_wrap = len(textwrap.wrap(text, width=80))/2
-
-
-    txt_clip = TextClip(wrapped_text,fontsize=font_size, font=FONT, color=TITLE_FONT_COLOR, align="west", interline=2)
-    txt_clip_pos = (215, 525-wrapped_wrap*45)
-    txt_clip = txt_clip.set_position(txt_clip_pos)
-
-    # author_clip = TextClip(f"/u/{comment.author}", fontsize=author_font_size, font=FONT, color="lightblue")
-    # author_pos = (SIZE[0]/2 - txt_clip.size[0]/2, SIZE[1]/2 - txt_clip.size[1]/2 - author_font_size - 15)
-    # author_clip = author_clip.set_position(author_pos)
-    #
-    # score_clip = TextClip(f"{comment.score} points", fontsize=author_font_size, font=FONT, color="grey")
-    # score_pos = (author_pos[0] + author_clip.size[0] + 30, author_pos[1])
-    # score_clip = score_clip.set_position(score_pos)
-
-    # arrow_clip = ImageClip(ARROW_IMAGE)
-    # arrow_pos2 = 500-wrapped_wrap*45
-    # arrow_pos1 = 110
-    # arrow_pos = (arrow_pos1,arrow_pos2)
-    # arrow_clip = arrow_clip.set_position(arrow_pos)
-
-    arrow_clip = ImageClip(ARROW_IMAGE)
-    arrow_pos = (txt_clip_pos[0]-arrow_clip.size[0]-25, txt_clip_pos[1]-35)
-    arrow_clip = arrow_clip.set_position(arrow_pos)
+        background_clip = ImageClip(BACKGROUND_IMAGE)
+        audio_clip = AudioFileClip(audio_path[i])
+        font_size = TITLE_FONT_SIZE
+        # author_font_size = 30
+        wrapped_wrap = len(textwrap.wrap(text, width=80))/2
 
 
-    clip = CompositeVideoClip([background_clip, txt_clip, arrow_clip])
-    clip.audio = audio_clip
-    clip.duration = audio_clip.duration
+        txt_clip = TextClip(wrapped_text,fontsize=font_size, font=FONT, color=TITLE_FONT_COLOR, align="west", interline=2)
+        txt_clip_pos = (215, 525-wrapped_wrap*45)
+        txt_clip = txt_clip.set_position(txt_clip_pos)
+
+        # author_clip = TextClip(f"/u/{comment.author}", fontsize=author_font_size, font=FONT, color="lightblue")
+        # author_pos = (SIZE[0]/2 - txt_clip.size[0]/2, SIZE[1]/2 - txt_clip.size[1]/2 - author_font_size - 15)
+        # author_clip = author_clip.set_position(author_pos)
+        #
+        # score_clip = TextClip(f"{comment.score} points", fontsize=author_font_size, font=FONT, color="grey")
+        # score_pos = (author_pos[0] + author_clip.size[0] + 30, author_pos[1])
+        # score_clip = score_clip.set_position(score_pos)
+
+        # arrow_clip = ImageClip(ARROW_IMAGE)
+        # arrow_pos2 = 500-wrapped_wrap*45
+        # arrow_pos1 = 110
+        # arrow_pos = (arrow_pos1,arrow_pos2)
+        # arrow_clip = arrow_clip.set_position(arrow_pos)
+
+        arrow_clip = ImageClip(ARROW_IMAGE)
+        arrow_pos = (txt_clip_pos[0]-arrow_clip.size[0]-25, txt_clip_pos[1]-35)
+        arrow_clip = arrow_clip.set_position(arrow_pos)
+
+
+        clip = CompositeVideoClip([background_clip, txt_clip, arrow_clip])
+        clip.audio = audio_clip
+        clip.duration = audio_clip.duration
+        all_clips.append(clip)
     static_clip = VideoFileClip(STATIC_PATH)
-    clip = concatenate_videoclips([clip, static_clip])
+    all_clips.append(static_clip)
+    clip = concatenate_videoclips(all_clips)
     return clip
 
 def generate_video(context):

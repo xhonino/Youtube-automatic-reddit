@@ -11,6 +11,7 @@ words = {
 'cockfucker': 'ask hole',
 'cocksucker': 'ask hole',
 'cunt': 'ask hole',
+'dicks': 'pendises',
 'dick': 'pendis',
 'faggot': 'ask hole',
 'fuck': 'duck',
